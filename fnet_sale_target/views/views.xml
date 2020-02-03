@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+        <record id="sales_target_form_view" model="ir.ui.view">
+            <field name="name">sales.target.form.view</field>
+            <field name="model">sale.target</field>
+            <field name="arch" type="xml">
+                <form string="Calls Target">
+                     <header>
+                         <button name="def_confirm" string="Confirm" type="object" states="draft" class="btn-primary"/>
+                         <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                     </header>
+                     <sheet>
+
+                         <group>
+                             <group>
+                                 <field name="category" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                 <field name="team_ids" widget="many2many_tags" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                             </group>
+                             <group>
+                                 <field name="from_date" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                 <field name="to_date" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                 <field name="name"  invisible="1"/>
+                             </group>
+                         </group>
+
+<!--
+                         <group>
+                             <group>
+                                 <field name="total_call" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                 <field name="total_funnel" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                 <field name="total_order_booked" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                             </group>
+                             <group>
+                                 <field name="total_tl_bill" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                                 <field name="total_bl_bill" attrs="{'readonly': [('state', '=', 'done')]}"/>
+                             </group>
+                         </group>
+-->
+
+                        <notebook>
+                            <page string="Calls">
+                             <field name="target_line" context="{'team_ids':team_ids}" attrs="{'readonly': [('state', '=', 'done')]}">
+                                 <tree editable="bottom">
+                                     <field name="user_id" options="{'no_create': True}"/>
+                                     <field name="call_count" />
+                                     <field name="call_count1" />
+                                     <field name="calls" invisible="1"/>
+                                 </tree>
+                             </field>
+                            </page>
+
+                            <page string="Funnels">
+                             <field name="funnel_line" context="{'team_ids':team_ids}" attrs="{'readonly': [('state', '=', 'done')]}">
+                                 <tree editable="bottom">
+                                     <field name="user_id" options="{'no_create': True}"/>
+                                     <field name="apr"/>
+                                     <field name="may"/>
+                                     <field name="jun"/>
+                                     <field name="jul"/>
+                                     <field name="aug"/>
+                                     <field name="sep"/>
+                                     <field name="octt"/>
+                                     <field name="nov"/>
+                                     <field name="dec"/>
+                                     <field name="jan"/>
+                                     <field name="feb"/>
+                                     <field name="mar"/>
+                                     <field name="funnel_count"/>
+                                     <field name="funnel" invisible="1"/>
+                                 </tree>
+                             </field>
+                            </page>
+
+                            <page string="Order Booked">
+                             <field name="order_booked_line" context="{'team_ids':team_ids}" attrs="{'readonly': [('state', '=', 'done')]}">
+                                 <tree editable="bottom">
+                                     <field name="user_id" options="{'no_create': True}"/>
+                                     <field name="apr"/>
+                                     <field name="may"/>
+                                     <field name="jun"/>
+                                     <field name="jul"/>
+                                     <field name="aug"/>
+                                     <field name="sep"/>
+                                     <field name="octt"/>
+                                     <field name="nov"/>
+                                     <field name="dec"/>
+                                     <field name="jan"/>
+                                     <field name="feb"/>
+                                     <field name="mar"/>
+                                     <field name="obl_count"/>
+                                     <field name="order_booked" invisible="1"/>
+                                 </tree>
+                             </field>
+                            </page>
+
+                            <page string="TL">
+                             <field name="tl_billing_line" context="{'team_ids':team_ids}" attrs="{'readonly': [('state', '=', 'done')]}">
+                                 <tree editable="bottom">
+                                     <field name="user_id" options="{'no_create': True}"/>
+                                     <field name="apr"/>
+                                     <field name="may"/>
+                                     <field name="jun"/>
+                                     <field name="jul"/>
+                                     <field name="aug"/>
+                                     <field name="sep"/>
+                                     <field name="octt"/>
+                                     <field name="nov"/>
+                                     <field name="dec"/>
+                                     <field name="jan"/>
+                                     <field name="feb"/>
+                                     <field name="mar"/>
+                                     <field name="tl_count"/>
+                                     <field name="tl_billing" invisible="1"/>
+                                 </tree>
+                             </field>
+                            </page>
+
+                            <page string="BL">
+                             <field name="bl_billing_line" context="{'team_ids':team_ids}" attrs="{'readonly': [('state', '=', 'done')]}">
+                                 <tree editable="bottom">
+                                     <field name="user_id" options="{'no_create': True}"/>
+                                     <field name="apr"/>
+                                     <field name="may"/>
+                                     <field name="jun"/>
+                                     <field name="jul"/>
+                                     <field name="aug"/>
+                                     <field name="sep"/>
+                                     <field name="octt"/>
+                                     <field name="nov"/>
+                                     <field name="dec"/>
+                                     <field name="jan"/>
+                                     <field name="feb"/>
+                                     <field name="mar"/>
+                                     <field name="bl_count"/>
+                                     <field name="bl_billing" invisible="1"/>
+                                 </tree>
+                             </field>
+                            </page>
+
+                            <page string="Payment Receive">
+                             <field name="pay_receive_line" context="{'team_ids':team_ids}" attrs="{'readonly': [('state', '=', 'done')]}">
+                                 <tree editable="bottom">
+                                     <field name="user_id" options="{'no_create': True}"/>
+                                     <field name="apr"/>
+                                     <field name="may"/>
+                                     <field name="jun"/>
+                                     <field name="jul"/>
+                                     <field name="aug"/>
+                                     <field name="sep"/>
+                                     <field name="octt"/>
+                                     <field name="nov"/>
+                                     <field name="dec"/>
+                                     <field name="jan"/>
+                                     <field name="feb"/>
+                                     <field name="mar"/>
+                                     <field name="prl_count"/>
+                                     <field name="pay_receive" invisible="1"/>
+                                 </tree>
+                             </field>
+                            </page>
+
+                           </notebook>
+
+                     </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="sales_target_tree_view" model="ir.ui.view">
+            <field name="name">sales.target.tree.view</field>
+            <field name="model">sale.target</field>
+            <field name="arch" type="xml">
+                 <tree string="Calls Target">
+                    <field name="category"/>
+                    <field name="from_date"/>
+                     <field name="to_date"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="action_sales_target" model="ir.actions.act_window">
+            <field name="name">Sales Target</field>
+            <field name="res_model">sale.target</field>
+            <field name="view_mode">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="sales_target_tree_view"/>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Click here to create the call target details.
+                </p>
+            </field>
+        </record>
+              <menuitem id="menu_sales_targets_id" name="Sales Target" action="action_sales_target" parent="sale.menu_sale_config" sequence="1"/>
+<!--    <menuitem id="menu_sales_targets" name="Sales Target" action="sales_team.action_sale_config_settings" parent="sales_team.menu_sale_config" sequence="11" groups="sales_team.group_sale_manager"/>-->
+
+  </data>
+</odoo>

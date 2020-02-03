@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <data>
+
+        <record id="hr_contract_view_forms" model="ir.ui.view">
+            <field name="name">hr.contract.form</field>
+            <field name="model">hr.contract</field>
+            <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//group[@name='main_info']" position="after">
+                        <group>
+                            <group>
+                                <field name="consolidate"/>
+                                <field name="is_travel_added"/>
+                                <field name="learning_development"/>
+                                <field name="effective_date"/>
+                                <field name="is_pt"/>
+                                <field name="pt" attrs="{'invisible': [('is_pt','=',False)]}"/>
+                                <field name="is_hra"/>
+                                <field name="hra" attrs="{'invisible': [('is_hra','=',False)]}"/>
+                                <field name="is_bonus"/>
+                                <field name="bonus" attrs="{'invisible': [('is_bonus','=',False)]}"/>
+                                <field name="is_medical"/>
+                                <field name="medical" attrs="{'invisible': [('is_medical','=',False)]}"/>
+                                <field name="is_convayance"/>
+                                <field name="convanyance" attrs="{'invisible': [('is_convayance','=',False)]}"/>
+                                <field name="is_other"/>
+                                <field name="other" attrs="{'invisible': [('is_other','=',False)]}"/>
+                                <field name="is_resigned" invisible="1"/>
+                                <field name="effective_date"/>
+                                <field name="basic_percentage"/>
+                                <field name="trance_allowance"/>
+                                <field name="ea_allowance"/>
+                                <field name="data_card_allowance"/>
+                                <field name="ot_allowance"/>
+                            </group>
+                            <group string="Deduction">
+                                <field name="tds_deduction"/>
+                                <field name="mobile_deduction"/>
+                                <field name="other_deduction"/>
+                                <field name="salary_advance"/>
+                                <field name="arrears"/>
+                                <field name="is_esi"/>
+                                <field name="is_arrear"/>
+                                <field name="salary_arrear"/>
+                            </group>
+                            <group string="Duration">
+    <!--                            <field name="trail_date_start"/>-->
+                                <field name="duration"/>
+                                <field name="working_hours"/>
+                                <field name="schedule_pay"/>
+                            </group>
+                        </group>
+                    </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+        <record id="lop_worked_days_form_id" model="ir.ui.view">
+            <field name="name">crm.lead.form</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='user_id']" position="after">
+                    <field name="req" widget="checkboxes" string="Product"></field>
+                </xpath>
+                <xpath expr="//div[@name='button_box']" position="after">
+                 <div class="oe_title">
+                            <label for="name1" class="oe_edit_only" string="Number"/>
+                            <h1><field name="name1" placeholder="e.g. Product Pricing"/></h1>
+                        </div>
+                </xpath>
+
+
+                <xpath expr="//field[@name='tag_ids']" position="after">
+                    <field name="types" string="Type"></field>
+                    <field name="product_id" string="Product" widget="many2one" options="{'no_create': True}"></field>
+                    <field name="oem" string="OEM"></field>
+                </xpath>
+            </field>
+        </record>
+<!--        <record id="lop_worked_days_form_id" model="ir.ui.view">-->
+<!--            <field name="name">crm.lead.tree</field>-->
+<!--            <field name="model">crm.lead</field>-->
+<!--            <field name="inherit_id" ref="crm.crm_case_tree_view_leads"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <xpath expr="//field[@name='planned_revenue']" position="before">-->
+<!--                    <field name="name"></field>-->
+<!--                </xpath>-->
+<!--&lt;!&ndash;                <xpath expr="//field[@name='tag_ids']" position="after">&ndash;&gt;-->
+<!--&lt;!&ndash;                    <field name="types" string="Type"></field>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <field name="product_id" string="Product" widget="many2one" options="{'no_create': True}"></field>&ndash;&gt;-->
+<!--&lt;!&ndash;                    <field name="oem" string="OEM"></field>&ndash;&gt;-->
+<!--&lt;!&ndash;                </xpath>&ndash;&gt;-->
+<!--            </field>-->
+<!--        </record>-->
+        <menuitem id="form_phonecalls_id" name="DSR" action="voip.voip_phonecall_view" parent="crm.crm_menu_sales"
+                  sequence="1"/>
+        <!--
+                voip.voip_phonecall_view
+        -->
+
+        <record id="voip_phonecall_tree_view" model="ir.ui.view">
+            <field name="model">voip.phonecall</field>
+            <field name="inherit_id" ref="voip.voip_phonecall_tree_view"/>
+            <field name="arch" type="xml">
+                    <xpath expr="//field[@name='name']" position="attributes">
+                         <attribute name="string">Description</attribute>
+                    </xpath>
+                    <xpath expr="//field[@name='name']" position="before">
+                        <field name="name1" string="Call Summary"></field>
+                    </xpath>
+                 <xpath expr="//field[@name='state']" position="after">
+                        <field name="lead_id"  string="Lead " domain="[('type', '=', 'opportunity')]"></field>
+                    </xpath>
+                   <xpath expr="//field[@name='state']" position="after">
+                        <field name="opportunity_id"  string="Opportunity " domain="[('type', '=', 'opportunity')]"></field>
+                    </xpath>
+            </field>
+        </record>
+
+<!--        <record id="voip_phonecall_tree_view" model="ir.ui.view">-->
+<!--            <field name="model">voip.phonecall</field>-->
+<!--            <field name="inherit_id" ref="voip.voip_phonecall_tree_view"/>-->
+<!--            <field name="arch" type="xml">-->
+<!--                   -->
+<!--            </field>-->
+<!--        </record>-->
+    </data>
+</odoo>

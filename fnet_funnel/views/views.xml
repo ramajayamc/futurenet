@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<odoo>
+  <data>
+<!--    <record id="funnel_pivot_report_id" model="ir.ui.view">-->
+<!--         <field name="name">funnel.report</field>-->
+<!--         <field name="model">funnel.report</field>-->
+<!--         <field name="arch" type="xml">-->
+<!--             <pivot string="New Funnel/ Pipeline per Week" disable_linking="True" >-->
+<!--                  <field name="date" interval="month" type="col"/>-->
+<!--                  &lt;!&ndash;<field name="date" interval="week" type="col"/>&ndash;&gt;-->
+<!--                  <field name="date" interval="week" type="col"/>-->
+<!--                  <field name="calls" type="row"/>-->
+<!--                  <field name="target_calls" type="measure"/>-->
+<!--                  <field name="achieved_calls" type="measure"/>-->
+<!--             </pivot>-->
+<!--         </field>-->
+<!--    </record>-->
+
+    <record id="sale_action_funnel_report" model="ir.actions.act_window">
+        <field name="name">My Funnel</field>
+        <field name="res_model">crm.lead</field>
+        <field name="view_mode">kanban,tree,graph,pivot,form,calendar</field>
+    </record>
+
+    <menuitem action="sale_action_funnel_report"
+      name="My Funnel "
+      id="sale_new_funnel_reports"
+      parent="crm.crm_menu_sales" sequence="40"/>
+  </data>
+</odoo>

@@ -1,0 +1,132 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+    <record id="view_questionnaire_form_view" model="ir.ui.view">
+        <field name="name">questionnaire.questionnaire.view</field>
+        <field name="model">questionnaire.questionnaire</field>
+        <field name="arch" type="xml">
+            <form string="questionnaire form">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+<!--
+                            <field name="name" default_focus="1" placeholder="Title"/>
+-->
+                            <field name="name" />
+                        </h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="headquarters"/>
+                            <field name="location"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Infra">
+                            <group>
+                                <group>
+                                    <field name="no_of_users" widget="check"/>
+                                    <field name="specify_no_of_users"  attrs="{'invisible': [('no_of_users', '!=', 'above')]}"/>
+                                    <field name="server_storage" widget="check"/>
+                                    <field name="specify1_server_storage"  attrs="{'invisible': [('server_storage', '!=', 'others')]}"/>
+                                    <field name="server_hosted" widget="check"/>
+                                    <field name="specify2_server_hosted"  attrs="{'invisible': [('server_hosted', '!=', 'others')]}"/>
+                                    <field name="is_server_vir" widget="check"/>
+                                    <field name="server_vir" widget="check" attrs="{'invisible': [('is_server_vir', '!=', 'yes')]}"/>
+                                    <field name="specify3_server_vir"  attrs="{'invisible': ['|', ('server_vir', '!=', 'others'),('is_server_vir', '!=', 'yes')]}"/>
+                                    <field name="osu" widget="check"/>
+                                    <field name="version"   attrs="{'invisible': [('osu', 'not in', ['unix', 'wind'] )]}"/>
+                                    <field name="specify4_osu"  attrs="{'invisible': [('osu', '!=', 'others')]}"/>
+                                </group>
+                                <group>
+                                    <field name="database" widget="check"/>
+                                    <field name="specify6_database"  attrs="{'invisible': [('database', '!=', 'others')]}"/>
+                                    <field name="message_colla" widget="check"/>
+                                    <field name="specify7_message_colla"  attrs="{'invisible': [('message_colla', '!=', 'others')]}"/>
+                                    <field name="ticketing_tool" widget="check"/>
+                                    <field name="specify8_ticketing_tool"  attrs="{'invisible': [('ticketing_tool', '!=', 'others')]}"/>
+                                    <field name="backup" widget="check"/>
+                                    <field name="specify9_backup"  attrs="{'invisible': [('backup', '!=', 'others')]}"/>
+                                </group>
+                            </group>
+                        </page>
+                        <page string="Application">
+                             <group>
+                                 <field name="application" widget="check"/>
+                                 <field name="specify0_application"  attrs="{'invisible': [('application', 'not in', ['erp', 'crm','contant'] )]}"/>
+                                 <field name="business" widget="check"/>
+                                 <field name="specify11_business"  attrs="{'invisible': [('business', '!=', 'others')]}"/>
+                                 <field name="reporting_tool" widget="check"/>
+                                 <field name="specify22_reporting_tool"  attrs="{'invisible': [('reporting_tool', '!=', 'others')]}"/>
+                            </group>
+                        </page>
+                        <page string="IT Support and Security">
+                             <group>
+                                 <field name="it_sup" widget="check"/>
+                                 <field name="specify33_it_sup"  attrs="{'invisible': [('it_sup', 'not in', ['manag', 'in'] )]}"/>
+                                 <field name="security" widget="check"/>
+                                 <field name="specify44_security"  attrs="{'invisible': [('security', '!=', 'others')]}"/>
+                            </group>
+                        </page>
+                    </notebook>
+                 </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_questionnaire_tree" model="ir.ui.view">
+            <field name="name">questionnaire.order.tree</field>
+            <field name="model">questionnaire.questionnaire</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="String" create="false">
+                    <field name="name" options="{'no_open': True,'no_create': 1,'no_create_edit' : True}"/>
+                    <field name="headquarters"/>
+                    <field name="location"/>
+               </tree>
+            </field>
+    </record>
+
+
+    <record id="questionnaire1_form" model="ir.actions.act_window">
+      <field name="name">Questionnaire Form</field>
+      <field name="res_model">questionnaire.questionnaire</field>
+      <field name="view_mode">form</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+<!--
+    <menuitem id="questionnaire_questionnaire" name="questionnaire"  sequence="1"/>
+-->
+    <menuitem id="questionnaire_questionnaire_menu" name="Questionnaire Details" action="questionnaire1_form" sequence="1"
+    parent="crm.crm_menu_sales"/>
+<!--
+<menuitem
+            id="crm_lead_menu_activities"
+            name="Next Activities"
+            parent="sales_team.menu_sales"
+            sequence="5"
+            action="crm_lead_action_activities" />
+-->
+
+    <record id="inherited_view_partner_form" model="ir.ui.view">
+            <field name="name">res.partner.form</field>
+            <field name="model">res.partner</field>
+            <field name="type">form</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+<!--
+                <field name="category_id" position="after">
+                    <field name="headquarters"/>
+                    <field name="location"/>
+                </field>
+-->
+                <div name="button_box" position="inside">
+                    <button string="Questionnaire" type="object" name="questionnaire1_form"  class="oe_stat_button" icon="fa-archive"  attrs="{'invisible': [('company_type', '!=', 'company')]}"/>
+                </div>
+            </field>
+    </record>
+</data>
+</odoo>
+

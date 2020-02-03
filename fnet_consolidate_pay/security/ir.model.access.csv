@@ -1,0 +1,2 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_fnet_consolidate_pay_fnet_consolidate_pay,fnet_consolidate_pay.fnet_consolidate_pay,model_fnet_consolidate_pay_fnet_consolidate_pay,,1,0,0,0

@@ -1,0 +1,160 @@
+<odoo>
+    <data>
+        <record id="fnet_hrms_employee_form_inherit" model="ir.ui.view">
+            <field name="name">hr.employee.form.inherit</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='category_ids']" position="before">
+                    <div class="oe_right"
+                         style="position:absolute; top:90px;left:800px;z-index:1;margin-right:200px; !important">
+                        <label for="employee_no" class="oe_edit_only"/>
+                        <field name="employee_no"/>
+                    </div>
+                </xpath>
+                <xpath expr="//field[@name='department_id']" position="before">
+                    <field name="employee_type"/>
+                </xpath>
+                <xpath expr="//page[3]" position="before">
+                    <page string="Family Details">
+                        <group>
+                            <group>
+                                <field name="fathers_name"/>
+                                <field name="fathers_dob"/>
+                                <field name="mothers_name"/>
+                                <field name="mothers_dob"/>
+                                <field name="marital"/>
+                                <field name="dom"/>
+                            </group>
+                            <group>
+                                <field name="spouse_name"/>
+                                <field name="spouse_dob"/>
+                                <field name="chile1"/>
+                                <field name="chile1_dob"/>
+                                <field name="chile2"/>
+                                <field name="chile2_dob"/>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//page[3]" position="before">
+                    <page string="Communication Details">
+                        <group>
+                            <group string="Permanent Address ">
+                                <div class="o_address_format">
+                                    <field name="street" placeholder="Street..." class="o_address_street"
+                                    />
+                                    <field name="street2" placeholder="Street 2..." class="o_address_street"
+                                    />
+                                    <field name="city" placeholder="City" class="o_address_city"
+                                    />
+                                    <field name="state_id" class="o_address_state" placeholder="State"
+                                           options="{&quot;no_open&quot;: True}"
+
+                                           context="{'country_id': country_id, 'zip': zip}"/>
+                                    <field name="zip" placeholder="ZIP" class="o_address_zip"
+                                    />
+                                    <field name="country_id" placeholder="Country" class="o_address_country"
+                                           options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"
+                                    />
+                                </div>
+                            </group>
+                            <group string="Temporary Address">
+                                <div class="o_address_format">
+                                    <field name="street_temp" placeholder="Street..." class="o_address_street"
+                                    />
+                                    <field name="street_temp2" placeholder="Street 2..." class="o_address_street"
+                                    />
+                                    <field name="city_temp" placeholder="City" class="o_address_city"
+                                    />
+                                    <field name="state_id_temp" class="o_address_state" placeholder="State"
+                                           options="{&quot;no_open&quot;: True}"
+
+                                           context="{'country_id': country_id, 'zip': zip}"/>
+                                    <field name="zip_temp" placeholder="ZIP" class="o_address_zip"
+                                    />
+                                    <field name="country_id_temp" placeholder="Country" class="o_address_country"
+                                           options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"
+                                    />
+                                </div>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//page[3]" position="before">
+                    <page string="Course Details">
+                        <group>
+                            <field name="course_ids" nolabel="1" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="institute"/>
+                                    <field name="year"/>
+                                    <field name="mark" String="%Score"/>
+                                    <field name="certificate"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//page[3]" position="before">
+                    <page string=" Work Experience">
+                        <group>
+                            <field name="name_of_company_ids" nolabel="1" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="company_name"/>
+                                    <field name="year_of_exp"/>
+                                    <field name="nature_of_job"/>
+                                    <field name="reliving_reason"/>
+                                    <field name="reliving"/>
+                                    <field name="designation"/>
+                                    <field name="appointment_letter"/>
+                                    <field name="reliving_letter"/>
+                                    <field name="pay_slip"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+                <xpath expr="//page[3]" position="before">
+                    <page string="Identification Proofs">
+                        <group>
+                            <group string="Aadhar">
+                                <field name="name_aadhar"/>
+                                <field name="doc_number"/>
+                                <field name="upload"/>
+                            </group>
+                            <group string="PAN">
+                                <field name="name_pan"/>
+                                <field name="doc_pan"/>
+                                <field name="upload_pan"/>
+                            </group>
+                            <group string="Passport">
+                                <field name="name_passport"/>
+                                <field name="doc_passport"/>
+                                <field name="issuing_authority_passport"/>
+                                <field name="plase_of_issue_passport"/>
+                                <field name="issued_date_passport"/>
+                                <field name="expire_date_passport"/>
+                            </group>
+                            <group string="Bank Details">
+                                <field name="name_bank"/>
+                                <field name="acc_num_bank"/>
+                                <field name="ifsc"/>
+                                <field name="branch"/>
+                            </group>
+                            <group string="Technical Skills">
+                                <field name="skills_ids" nolabel="1" widget="one2many_list">
+                                <tree editable="bottom">
+                                <field name="name_certificate"/>
+                                <field name="date_of_comp"/>
+                                <field name="upload_skill"/>
+                                </tree>
+                                </field>
+                            </group>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
