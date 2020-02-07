@@ -3,3 +3,5 @@ access_hr_employee,fnet_hrms.hr_employee,model_hr_employee,base.group_user,1,1,1
 access_course_details,fnet_hrms.course_details,model_course_details,base.group_user,1,1,1,0
 access_work_details,fnet_hrms.work_details,model_work_details,base.group_user,1,1,1,0
 access_skills_details,fnet_hrms.skills_details,model_skills_details,base.group_user,1,1,1,0
+access_awards_details,fnet_hrms.awards_details,model_awards_details,base.group_user,1,1,1,0
+access_asset_details,fnet_hrms.asset_details,model_asset_details,base.group_user,1,1,1,0

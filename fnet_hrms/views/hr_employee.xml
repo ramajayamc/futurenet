@@ -144,15 +144,59 @@
                             </group>
                             <group string="Technical Skills">
                                 <field name="skills_ids" nolabel="1" widget="one2many_list">
-                                <tree editable="bottom">
-                                <field name="name_certificate"/>
-                                <field name="date_of_comp"/>
-                                <field name="upload_skill"/>
-                                </tree>
+                                    <tree editable="bottom">
+                                        <field name="name_certificate"/>
+                                        <field name="date_of_comp"/>
+                                        <field name="upload_skill"/>
+                                    </tree>
                                 </field>
                             </group>
                         </group>
                     </page>
+                </xpath>
+                <xpath expr="//group[@name='identification_group']" position="after">
+                        <group string="Employment Details">
+                            <field name="doj_our_comapny"/>
+                            <field name="date_of_appoinment"/>
+                            <field name="app_letter_upload"/>
+                            <field name="date_of_confirmation"/>
+                            <field name="con_letter_upload"/>
+                            <field name="epf_no"/>
+                            <field name="uan_no"/>
+                            <field name="dof_epf"/>
+                            <field name="esic_no"/>
+                            <field name="doj_esic"/>
+                            <field name="doj_gratuity"/>
+                            <field name="reliving_date"/>
+                            <field name="reason_resignation"/>
+                            <field name="Date_of_reliving"/>
+                            <field name="reliving_doc"/>
+                            <field name="exit_doc"/>
+                            <field name="clearance_doc"/>
+                            <field name="full_and_final_amunt"/>
+                            <field name="settlement_date"/>
+                            <field name="settlement"/>
+                            <field name="fnf_letter"/>
+                        </group>
+                        <group string="Awards Received">
+                            <field name="awards_ids" nolabel="1" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="category"/>
+                                    <field name="year"/>
+                                </tree>
+                            </field>
+                        </group>
+                        <group string="Asset Details">
+                            <field name="asset_ids" nolabel="1" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="equipment_type"/>
+                                    <field name="model"/>
+                                    <field name="serial_no"/>
+                                    <field name="hand_over"/>
+                                    <field name="description"/>
+                                </tree>
+                            </field>
+                        </group>
                 </xpath>
             </field>
         </record>

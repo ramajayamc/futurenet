@@ -1,0 +1,80 @@
+<odoo>
+    <data>
+
+        <record id="view_recruitment_tree" model="ir.ui.view">
+            <field name="name">recruitment.details.tree</field>
+            <field name="model">recruitment.details</field>
+            <field name="arch" type="xml">
+                <tree string="Recruitment">
+                    <field name="position_name"/>
+                    <field name="department"/>
+                    <field name="reason_vacancy"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_recruitment_forms" model="ir.ui.view">
+            <field name="name">recruitment.details.form</field>
+            <field name="model">recruitment.details</field>
+            <field name="arch" type="xml">
+                <form string="Recruitment">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="position_name"/>
+                                <field name="department"/>
+                                <field name="reason_vacancy"/>
+                                <field name="whom_replacement"/>
+                                <field name="position_reason"/>
+                                <field name="educational_qualification"/>
+                                <field name="area_of_exp"/>
+                                <field name="other_skills"/>
+                                <field name="salary"/>
+                                <field name="experiance"/>
+                                <field name="filled_date"/>
+                                <field name="description"/>
+                            </group>
+                            <group>
+                                <field name="recruitment"/>
+                                <field name="nda"/>
+                                <field name="credit_days"/>
+                                <field name="credit"/>
+                                <field name="consultant_payment"/>
+                                <field name="cheque_no"/>
+                                <field name="date"/>
+                                <field name="amount"/>
+                                <field name="utr_number"/>
+                                <field name="social_media"/>
+                                <field name="advertisement"/>
+                                <field name="job_fairs"/>
+                                <field name="name_call"/>
+                                <field name="contact_number"/>
+                                <field name="position_ref"/>
+                                <field name="current_ctc"/>
+                                <field name="expected_ctc"/>
+                                <field name="notice_period"/>
+                                <field name="hr_status"/>
+                                <field name="product_knowledge"/>
+                                <field name="technical_level"/>
+                                <field name="fitment"/>
+                                <field name="technical_person"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_recruitment_form" model="ir.actions.act_window">
+            <field name="name">Recruitment Form</field>
+            <field name="res_model">recruitment.details</field>
+            <field name="view_mode">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="recruitment_details_menu" action="action_recruitment_form" name="Manpower Requisition"
+                  parent="hr_recruitment.menu_hr_recruitment_root"/>
+
+    </data>
+</odoo>
+<!--attrs="{'invisible': [('graduity_is', '!=', True)]}"-->

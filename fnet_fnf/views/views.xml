@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="view_fnf_tree" model="ir.ui.view">
+            <field name="name">fnf.details.tree</field>
+            <field name="model">fnf.details</field>
+            <field name="arch" type="xml">
+                <tree string="FNF">
+                    <field name="employee_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_fnf_forms" model="ir.ui.view">
+            <field name="name">fnf.details.form</field>
+            <field name="model">fnf.details</field>
+            <field name="arch" type="xml">
+                <form string="FNF">
+                    <sheet>
+                        <group>
+                            <field name="employee_id"/>
+                            <field name="graduity_is" widget="checkbox"/>
+                        </group>
+
+                        <notebook colspan="4">
+                            <page name="asset_details" string="Asset Details">
+                                <field name="asset_details_ids" nolabel="1" widget="one2many_list">
+                                    <tree editable="bottom">
+                                        <field name="equipment_type"/>
+                                        <field name="model"/>
+                                        <field name="serial_no"/>
+                                        <field name="hand_over"/>
+                                        <field name="description"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page name="gratuity_details" string="Gratuity Details"
+                                  attrs="{'invisible': [('graduity_is', '!=', True)]}">
+                                <group>
+                                    <group>
+                                        <field name="doj"/>
+                                        <field name="dor"/>
+                                        <field name="basic"/>
+                                        <field name="gratuity"/>
+                                        <field name="doj_service"/>
+                                    </group>
+                                    <group>
+                                        <field name="doj_gratuity"/>
+                                        <field name="total"/>
+                                        <field name="amount_lic_group"/>
+                                        <field name="amount_paid_futurenet"/>
+                                    </group>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="action_fnf_form" model="ir.actions.act_window">
+            <field name="name">FNF Form</field>
+            <field name="res_model">fnf.details</field>
+            <field name="view_mode">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="fnf_details_menu" action="action_fnf_form" name="FNF Details" parent="hr.menu_hr_root"
+                  groups="hr.group_hr_manager"/>
+
+
+    </data>
+</odoo>

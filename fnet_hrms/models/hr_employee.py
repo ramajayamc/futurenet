@@ -57,6 +57,33 @@ class HrEmployee(models.Model):
 
     skills_ids = fields.One2many('skills.details', 'employee_id', string='Skills Details')
 
+    doj_our_comapny = fields.Date(string="DOJ as Per Our Company")
+    date_of_appoinment = fields.Date(string="Date of Appointment")
+    app_letter_upload = fields.Binary(string="Appointment letter")
+    date_of_confirmation = fields.Date(string="Date of confirmation")
+    con_letter_upload = fields.Binary(string="Confirmation letter")
+    epf_no = fields.Integer(string="EPF No")
+    uan_no = fields.Integer(string="UAN No")
+    dof_epf = fields.Integer(string="Date Of joining as per EPF")
+    esic_no = fields.Integer(string="ESIC No")
+    doj_esic = fields.Integer(string="Date Of joining as per ESIC")
+    doj_gratuity = fields.Date(string="Date Of joining as per Gratuity")
+    reliving_date = fields.Date(string="Reliving Date")
+    reason_resignation = fields.Char(string="Reason for Resignation")
+    Date_of_reliving = fields.Date(string="Date of Reliving")
+    reliving_doc = fields.Binary(string="Reliving letter")
+    exit_doc = fields.Binary(string="Exit Interview Form")
+    clearance_doc = fields.Binary(string="No due clearance form")
+    full_and_final_amunt = fields.Integer(string="Full and final settlement amount ")
+    settlement_date = fields.Date(string="Settlement date")
+    settlement = fields.Selection([('cheque','Cheque'),('neft','NEFT')], string="Settlement")
+    fnf_letter = fields.Binary(string="FNF Letter")
+
+    awards_ids = fields.One2many('awards.details', 'employee_id', string='Awards Received')
+
+    asset_ids = fields.One2many('asset.details', 'employee_id', string='Asset Details')
+
+
 
 
     @api.model
@@ -105,5 +132,21 @@ class SkillsDetails(models.Model):
     upload_skill = fields.Binary(string="Upload")
 
 
+class AwardsReceived(models.Model):
+    _name = 'awards.details'
+
+    employee_id = fields.Many2one('hr.employee', string='Awards Received')
+    category = fields.Char(string="Category")
+    year = fields.Char(string="Year")
 
 
+
+class AssetDetails(models.Model):
+    _name = 'asset.details'
+
+    employee_id = fields.Many2one('hr.employee', string='Asset Details')
+    equipment_type = fields.Char(string="Equipment Type")
+    model = fields.Char(string="Model")
+    serial_no = fields.Char(string="Serial Number")
+    hand_over = fields.Char(string="Hand Over")
+    description = fields.Char(string="Description")
