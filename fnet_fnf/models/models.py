@@ -1,8 +1,10 @@
 
 from odoo import models, fields, api
 
+
 class FNF(models.Model):
     _name = 'fnf.details'
+    _description = "FNF"
 
     employee_id = fields.Many2one("hr.employee",string="Employee Name")
     graduity_is = fields.Boolean(string="Gratuity")
@@ -18,10 +20,9 @@ class FNF(models.Model):
     asset_details_ids = fields.One2many('asset.details', 'emp_id', string='Asset Details')
 
 
-
-
 class AssetDetails(models.Model):
     _inherit = "asset.details"
+    _description = "AssetDetails"
 
     emp_id = fields.Many2one('fnf.details', string='Asset Details')
 

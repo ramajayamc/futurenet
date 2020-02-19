@@ -1,3 +1,10 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
-access_recruitment_details,fnet_recruitment.recruitment_details,model_recruitment_details,base.group_user,1,1,1,0
-access_call_details,fnet_call.call_details,model_call_details,base.group_user,1,1,1,0
+
+access_recruitment_plan,fnet_recruitment.recruitment_plan,model_recruitment_plan,hr_recruitment.group_hr_recruitment_user,1,0,0,0
+access_recruitment_plan,fnet_recruitment.recruitment_plan,model_recruitment_plan,hr_recruitment.group_hr_recruitment_manager,1,1,1,1
+
+access_recruitment_details,fnet_recruitment.recruitment_details,model_recruitment_details,hr_recruitment.group_hr_recruitment_user,1,0,0,0
+access_recruitment_details,fnet_recruitment.recruitment_details,model_recruitment_details,hr_recruitment.group_hr_recruitment_manager,1,1,1,1
+
+access_call_details,fnet_call.call_details,model_call_details,hr_recruitment.group_hr_recruitment_user,1,0,0,0
+access_call_details,fnet_call.call_details,model_call_details,hr_recruitment.group_hr_recruitment_manager,1,1,1,1

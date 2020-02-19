@@ -4,9 +4,9 @@ from odoo import models, fields, api
 
 class HrEmployee(models.Model):
     _inherit = "hr.employee"
+    _description = "HrEmployee"
 
     employee_no = fields.Char(string='Employee ID')
-
     fathers_name = fields.Char(string='Fathers Name')
     fathers_dob = fields.Date(string='Father Date Of Birth')
     mothers_name = fields.Char(string='Mothers Name')
@@ -83,9 +83,6 @@ class HrEmployee(models.Model):
 
     asset_ids = fields.One2many('asset.details', 'employee_id', string='Asset Details')
 
-
-
-
     @api.model
     def create(self, vals):
         vals['employee_no'] = self.env['ir.sequence'].next_by_code('employee.sequence')
@@ -95,6 +92,7 @@ class HrEmployee(models.Model):
 
 class CourseDetails(models.Model):
     _name = 'course.details'
+    _description = "CourseDetails"
 
     employee_id = fields.Many2one('hr.employee', string='Course')
     name = fields.Selection([('x', 'X*'), ('xii', 'XII'),
@@ -109,6 +107,7 @@ class CourseDetails(models.Model):
 
 class WorkDetails(models.Model):
     _name = 'work.details'
+    _description = "WorkDetails"
 
     employee_id = fields.Many2one('hr.employee', string='Work Experience')
     company_name = fields.Char(string="Name of the company")
@@ -124,6 +123,7 @@ class WorkDetails(models.Model):
 
 class SkillsDetails(models.Model):
     _name = 'skills.details'
+    _description = "SkillsDetails"
 
     employee_id = fields.Many2one('hr.employee', string='Skills Details')
     name_certificate = fields.Selection([('global', 'Global',), ('certification', 'Certification')],
@@ -134,15 +134,16 @@ class SkillsDetails(models.Model):
 
 class AwardsReceived(models.Model):
     _name = 'awards.details'
+    _description = "AwardsReceived"
 
     employee_id = fields.Many2one('hr.employee', string='Awards Received')
     category = fields.Char(string="Category")
     year = fields.Char(string="Year")
 
 
-
 class AssetDetails(models.Model):
     _name = 'asset.details'
+    _description = "AssetDetails"
 
     employee_id = fields.Many2one('hr.employee', string='Asset Details')
     equipment_type = fields.Char(string="Equipment Type")

@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+
+access_transfer_details,fnet_transfer.transfer_details,model_transfer_details,hr.group_hr_user,1,1,1,1
+access_transfer_details,fnet_transfer.transfer_details,model_transfer_details,base.group_user,1,1,1,1
+
+access_transfer_employee,fnet_transfer.transfer_employee,model_transfer_employee,hr.group_hr_user,1,1,1,1
+access_transfer_employee,fnet_transfer.transfer_employee,model_transfer_employee,base.group_user,1,1,1,1

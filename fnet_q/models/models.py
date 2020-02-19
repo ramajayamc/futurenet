@@ -5,6 +5,7 @@ from odoo import models, fields, api,_
 
 class QuestionnaireRecord(models.Model):
     _name = "questionnaire.questionnaire"
+    _description = "QuestionnaireRecord"
 
     headquarters = fields.Char(string='Headquarters')
     location = fields.Char(string='No Of Location')
@@ -47,15 +48,12 @@ class QuestionnaireRecord(models.Model):
     specify44_security = fields.Char(string='Security and gateway Specify')
 
 
-
 class ResPartner(models.Model):
     _inherit = "res.partner"
-    
+    _description = "ResPartner"
+
     # ~ headquarters = fields.Char(string='Headquarters')
     # ~ location = fields.Char(string='No Of Location')
-
-
-    # @api.multi
     def questionnaire1_form(self):
         """ Return an action to open the document ``self``. This method is meant
             to be overridden in addons that want to give specific view ids for

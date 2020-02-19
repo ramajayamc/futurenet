@@ -4,13 +4,14 @@ import datetime
 
 class Lead(models.Model):
     _inherit = 'crm.lead'
+    _description = "Lead"
 
-    req = fields.Boolean(String="Product" )
+    req = fields.Boolean(string="Product" )
     name1 = fields.Char(string="Opportunity ID",readonly=True, required=False)
-    types = fields.Selection([('sale', 'Sale'), ('service', 'Service'), ('sal_ser', 'Sale and Service')], String = 'Type')
-    product_id = fields.Many2one('product.product', String='Product')
+    types = fields.Selection([('sale', 'Sale'), ('service', 'Service'), ('sal_ser', 'Sale and Service')], string = 'Type')
+    product_id = fields.Many2one('product.product', string='Product')
     # oem = fields.Many2many('crm.oem', String='Product')
-    oem = fields.Selection([('dell','Dell'),('hp','HP'),('hitachi','Hitachi'),('accer','Accer'),('asus','ASUS')], String = 'OEM')
+    oem = fields.Selection([('dell','Dell'),('hp','HP'),('hitachi','Hitachi'),('accer','Accer'),('asus','ASUS')], string = 'OEM')
 
     # @api.model
     # def create(self, vals):
@@ -138,6 +139,7 @@ class Lead(models.Model):
 class CalendarEvent(models.Model):
     """ Model for Calendar Event """
     _inherit = 'calendar.event'
+    _description = "CalendarEvent"
 
     @api.model
     def create(self, vals):
@@ -179,6 +181,7 @@ class CalendarEvent(models.Model):
 
 class CrmPhoneCalls(models.Model):
     _inherit = "voip.phonecall"
+    _description = "CrmPhoneCalls"
 
     # call_sum = fields.Char('Call Summary', required=True)
     name1 = fields.Selection(

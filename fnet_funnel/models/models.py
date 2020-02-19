@@ -5,6 +5,7 @@ from odoo import tools
 
 class FunnelReport(models.Model):
     _name = "funnel.report"
+    _description = "FunnelReport"
 
     date = fields.Date(readonly=True)
     crm_team_id = fields.Many2one('crm.team', 'Salesteam')

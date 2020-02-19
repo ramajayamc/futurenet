@@ -6,6 +6,7 @@ from odoo import models, fields, api
 class sales_targets(models.Model):
     _name = 'sale.target'
     _rec_name = 'name'
+    _description = "sales_targets"
 
     name = fields.Char('Categ Name')
     category = fields.Selection([
@@ -56,6 +57,7 @@ class sales_targets(models.Model):
 
 class target_lines(models.Model):
     _name = 'target.line'
+    _description = "target_lines"
 
     target_id = fields.Many2one('sale.target', 'Target', ondelete='cascade')
     user_id = fields.Many2one('res.users', 'New Calls')
@@ -80,6 +82,7 @@ class target_lines(models.Model):
 
 class funnel_lines(models.Model):
     _name = 'funnel.line'
+    _description = "funnel_lines"
 
     funnel_id = fields.Many2one('sale.target', 'Target', ondelete='cascade')
     user_id = fields.Many2one('res.users', 'Sales Person')
@@ -121,6 +124,7 @@ class funnel_lines(models.Model):
 
 class booked_lines(models.Model):
     _name = 'booked.line'
+    _description = "booked_lines"
 
     booked_id = fields.Many2one('sale.target', 'Target', ondelete='cascade')
     user_id = fields.Many2one('res.users', 'Sales Person')
@@ -162,6 +166,7 @@ class booked_lines(models.Model):
 
 class tl_billing_lines(models.Model):
     _name = 'tl.billing.line'
+    _description = "tl_billing_lines"
 
     tl_id = fields.Many2one('sale.target', 'Target', ondelete='cascade')
     user_id = fields.Many2one('res.users', 'Sales Person')
@@ -203,6 +208,7 @@ class tl_billing_lines(models.Model):
 
 class bl_billing_lines(models.Model):
     _name = 'bl.billing.line'
+    _description = "bl_billing_lines"
 
     bl_id = fields.Many2one('sale.target', 'Target', ondelete='cascade')
     user_id = fields.Many2one('res.users', 'Sales Person')
@@ -244,6 +250,7 @@ class bl_billing_lines(models.Model):
 
 class payment_received_lines(models.Model):
     _name = 'pay.receive.line'
+    _description = "payment_received_lines"
 
     prl_id = fields.Many2one('sale.target', 'Target', ondelete='cascade')
     user_id = fields.Many2one('res.users', 'Sales Person')

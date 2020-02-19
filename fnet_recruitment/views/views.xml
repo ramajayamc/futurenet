@@ -1,3 +1,4 @@
+<?xml version="1.0"?>
 <odoo>
     <data>
 
@@ -5,7 +6,7 @@
             <field name="name">recruitment.details.tree</field>
             <field name="model">recruitment.details</field>
             <field name="arch" type="xml">
-                <tree string="Recruitment">
+                <tree string="position_name">
                     <field name="position_name"/>
                     <field name="department"/>
                     <field name="reason_vacancy"/>
@@ -18,10 +19,26 @@
             <field name="model">recruitment.details</field>
             <field name="arch" type="xml">
                 <form string="Recruitment">
+                    <header>
+                        <button name="object_submit" type="object" string="Submit" class="oe_highlight"/>
+                        <button name="object_done" type="object" string="Done" class="oe_highlight"/>
+                        <button name="object_cancel" type="object" string="Cancel" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <!--                    <header>-->
+                    <!--                        <div name="button_box" position="inside">-->
+                    <!--                            <button string="Job Position" type="object" name="action_recruitment" class="oe_stat_button"-->
+                    <!--                                    icon="fa-archive"/>-->
+                    <!--                        </div>-->
+                    <!--                    </header>-->
                     <sheet>
-                        <group>
+                        <div class="oe_button_box" name="button_box">
+                            <button string="Job Position" type="object" name="action_recruitment" class="oe_stat_button"
+                                    icon="fa-archive"/>
+                        </div>
                             <group>
                                 <field name="position_name"/>
+                                <field name="position_id"/>
                                 <field name="department"/>
                                 <field name="reason_vacancy"/>
                                 <field name="whom_replacement"/>
@@ -30,40 +47,16 @@
                                 <field name="area_of_exp"/>
                                 <field name="other_skills"/>
                                 <field name="salary"/>
-                                <field name="experiance"/>
+                                <field name="experience"/>
                                 <field name="filled_date"/>
                                 <field name="description"/>
                             </group>
-                            <group>
-                                <field name="recruitment"/>
-                                <field name="nda"/>
-                                <field name="credit_days"/>
-                                <field name="credit"/>
-                                <field name="consultant_payment"/>
-                                <field name="cheque_no"/>
-                                <field name="date"/>
-                                <field name="amount"/>
-                                <field name="utr_number"/>
-                                <field name="social_media"/>
-                                <field name="advertisement"/>
-                                <field name="job_fairs"/>
-                                <field name="name_call"/>
-                                <field name="contact_number"/>
-                                <field name="position_ref"/>
-                                <field name="current_ctc"/>
-                                <field name="expected_ctc"/>
-                                <field name="notice_period"/>
-                                <field name="hr_status"/>
-                                <field name="product_knowledge"/>
-                                <field name="technical_level"/>
-                                <field name="fitment"/>
-                                <field name="technical_person"/>
-                            </group>
-                        </group>
+
                     </sheet>
                 </form>
             </field>
         </record>
+
 
         <record id="action_recruitment_form" model="ir.actions.act_window">
             <field name="name">Recruitment Form</field>
@@ -72,9 +65,114 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+
+        <menuitem id="recruitment_details_menu1" action="action_recruitment_form" name="Requisition"
+                  parent="hr_recruitment.menu_hr_recruitment_root" groups="base.group_user"/>
+
         <menuitem id="recruitment_details_menu" action="action_recruitment_form" name="Manpower Requisition"
-                  parent="hr_recruitment.menu_hr_recruitment_root"/>
+                  parent="recruitment_details_menu1" groups="base.group_user"/>
+
+
+        <record id="view_recruitment1_tree" model="ir.ui.view">
+            <field name="name">recruitment.plan.tree</field>
+            <field name="model">recruitment.plan</field>
+            <field name="arch" type="xml">
+                <tree string="Recruitment">
+                    <field name="recruitment"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_recruitment1_forms" model="ir.ui.view">
+            <field name="name">recruitment.plan.form</field>
+            <field name="model">recruitment.plan</field>
+            <field name="arch" type="xml">
+                <form string="Recruitment Plan">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="recruitment"/>
+                                <field name="hire" attrs="{'invisible': [('recruitment','not in',['job_portal'])]}"/>
+                                <field name="consultant_name"
+                                       attrs="{'invisible': [('recruitment','not in',['consultant'])]}"/>
+                                <field name="nda" attrs="{'invisible': [('recruitment','not in',['consultant'])]}"/>
+                                <field name="credit_days"
+                                       attrs="{'invisible': [('recruitment','not in',['consultant'])]}"/>
+                                <field name="consultant_payment"
+                                       attrs="{'invisible': [('recruitment','not in',['consultant'])]}"/>
+                                <field name="cheque_no"
+                                       attrs="{'invisible': [('consultant_payment','not in',['cheque'])]}"/>
+                                <field name="date" attrs="{'invisible': [('consultant_payment','not in',['cheque'])]}"/>
+                                <field name="amount"
+                                       attrs="{'invisible': [('consultant_payment','not in',['cheque'])]}"/>
+                                <field name="utr_number"
+                                       attrs="{'invisible': [('consultant_payment','not in',['neft'])]}"/>
+                                <field name="job_fair" attrs="{'invisible': [('recruitment','not in',['job_fairs'])]}"/>
+                                <field name="product_knowledge"
+                                       attrs="{'invisible': [('job_fair','not in',['technical'])]}"/>
+                                <field name="technical_level"
+                                       attrs="{'invisible': [('job_fair','not in',['technical'])]}"/>
+                                <field name="fitment_salary"
+                                       attrs="{'invisible': [('job_fair','not in',['technical'])]}"/>
+                                <field name="fitment_level"
+                                       attrs="{'invisible': [('job_fair','not in',['technical'])]}"/>
+                                <field name="technical_person"
+                                       attrs="{'invisible': [('job_fair','not in',['technical'])]}"/>
+                                <field name="sourced" attrs="{'invisible': [('recruitment','not in',['job_fairs'])]}"/>
+                                <field name="screening"
+                                       attrs="{'invisible': [('recruitment','not in',['job_fairs'])]}"/>
+                            </group>
+                        </group>
+                        <form string="Job Fairs">
+                            <group>
+                                <field name="initial_level_calls_ids" nolabel="1" widget="one2many_list"
+                                       attrs="{'invisible': [('recruitment','not in',['job_portal']),('recruitment','not in',['reference']),('recruitment','not in',['consultant']),('recruitment','not in',['social_media']),('recruitment','not in',['advertisement']),('recruitment','not in',['job_fairs']),('recruitment','not in',['walkin'])]}">
+                                    <tree editable="bottom">
+                                        <field name="name_call"/>
+                                        <field name="name_ref"
+                                               attrs="{'column_invisible': [('parent.recruitment','!=', 'reference')]}"/>
+                                        <field name="date"/>
+                                        <field name="contact_number"/>
+                                        <field name="position_ref"/>
+                                        <field name="exp"/>
+                                        <field name="current_ctc"/>
+                                        <field name="expected_ctc"/>
+                                        <field name="notice_period"/>
+                                        <field name="hr_status"/>
+                                        <field name="ststus"/>
+                                        <field name="remarks"/>
+                                    </tree>
+                                </field>
+                            </group>
+                        </form>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_recruitment1_form" model="ir.actions.act_window">
+            <field name="name">Recruitment Plan</field>
+            <field name="res_model">recruitment.plan</field>
+            <field name="view_mode">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem id="recruitment_plan_menu" action="action_recruitment1_form" name="Requisition Plan"
+                  parent="recruitment_details_menu1" groups="base.group_user"/>
+
+        <record id="view_applicant_forms_inherit" model="ir.ui.view">
+            <field name="name">hr.applicant.form.inherit</field>
+            <field name="model">hr.applicant</field>
+            <field name="inherit_id" ref="hr_recruitment.hr_applicant_view_form"/>
+            <field name="arch" type="xml">
+                <form>
+                    <field name="job_id" position="before">
+                        <field name="recruitment_id"/>
+                    </field>
+                </form>
+            </field>
+        </record>
 
     </data>
 </odoo>
-<!--attrs="{'invisible': [('graduity_is', '!=', True)]}"-->

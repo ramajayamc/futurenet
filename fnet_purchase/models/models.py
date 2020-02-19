@@ -1,7 +1,9 @@
 from odoo import models, fields, api
 
+
 class PurchaseOrder(models.Model):
     _inherit = "purchase.order"
+    _description = "Purchase Order"
 
     # name = fields.Char('Order Reference', required=True, index=True, copy=False, default='New')
     # date_order = fields.Datetime('Order Date', required=True)
@@ -11,19 +13,19 @@ class PurchaseOrder(models.Model):
     # company_id = fields.Many2one('res.partner', string='Company')
 
 
-
-
-
-class purchase_requisition(models.Model):
+class PurchaseRequisition(models.Model):
     _inherit='purchase.requisition'
+    _description = "Purchase Requisition"
 
     # customer_id = fields.Many2one('res.partner','Customer Name')
-    oppor_id = fields.Many2one('crm.lead','Enquiry Reference',required=False)
+    oppor_id = fields.Many2one('crm.lead','Enquiry Reference', required=False)
     company_id = fields.Many2one('res.company', string='Company', required=True, default=lambda self: self.env['res.company']._company_default_get('purchase.requisition'))
     avg_margin_percentage = fields.Float(string='Average Margin Percentage')
 
+
 class PurchaseOrderLines(models.Model):
     _inherit = 'purchase.order.line'
+    _description = "PurchaseOrderLines"
 
     product_category_id = fields.Many2one('product.category', 'Product Category', change_default=True)
     company = fields.Many2one('res.company', 'Company')
@@ -32,9 +34,9 @@ class PurchaseOrderLines(models.Model):
     schedule_date = fields.Datetime('Schedule Date')
 
 
-
 class PurchaseRequisitionLines(models.Model):
     _inherit = "purchase.requisition.line"
+    _description = "PurchaseRequisitionLines"
 
     # product_id = fields.Many2one('product.product', string='Product', domain=[('purchase_ok', '=', True)],
     #                              required=False)

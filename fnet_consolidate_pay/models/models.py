@@ -3,6 +3,7 @@ from odoo import api, fields, models
 
 class ConsolidatePay(models.Model):
     _inherit = 'hr.contract'
+    _description = "ConsolidatePay"
 
     consolidate_pay = fields.Float('Total Consolidate Pay', compute='_consolidate')
     total_consolidate = fields.Float('Consolidate Pay')

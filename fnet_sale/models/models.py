@@ -3,13 +3,12 @@ from odoo import models, fields, api, _
 from odoo.exceptions import UserError,except_orm
 
 
-
 class SaleOrder(models.Model):
     _inherit = 'sale.order'
+    _description = "SaleOrder"
 
-
-    types = fields.Selection([('sale', 'Sale'), ('service', 'Service'), ('sal_ser', 'Sale and Service')], String = 'Type')
-    product_id = fields.Many2one('product.product', String='Product')
+    types = fields.Selection([('sale', 'Sale'), ('service', 'Service'), ('sal_ser', 'Sale and Service')], string = 'Type')
+    product_id = fields.Many2one('product.product', string='Product')
     oem = fields.Selection([('dell' ,'Dell') ,('hp' ,'HP') ,('hitachi' ,'Hitachi') ,('accer' ,'Accer') ,('asus' ,'ASUS')], String = 'OEM')
     quotation_reference = fields.Char("Quotation reference", readonly=True)
     tender_id = fields.Many2one('purchase.requisition', 'Tender Reference')
@@ -22,13 +21,6 @@ class SaleOrder(models.Model):
     product_line_id = fields.One2many('product.order.line','order_id', string='Margin Details')
 
     # product_line_ids = fields.Many2many("product.move", string='Invoices', compute="_get_invoiced", readonly=True, copy=False)
-
-
-
-
-
-
-
     def action_confirm(self):
         ret_val = self.env['ir.attachment'].search(['|', ('res_id', '=', self.id), ('res_name', '=', self.name)])
         if ret_val:
@@ -42,14 +34,14 @@ class SaleOrder(models.Model):
 
 class SaleOrderline(models.Model):
     _inherit = 'sale.order.line'
+    _description = "SaleOrderline"
 
     hsn_code = fields.Char('HSN code')
 
 
-
 class MarginDetails(models.Model):
     _name = 'product.order.line'
-
+    _description = "MarginDetails"
 
     order_id = fields.Many2one('Product')
     sale_value = fields.Char('Sale Price')

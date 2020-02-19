@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<odoo>
+    <data>
+
+        <record id="view_transfer_tree" model="ir.ui.view">
+            <field name="name">transfer.details.tree</field>
+            <field name="model">transfer.details</field>
+            <field name="arch" type="xml">
+                <tree string="position_name">
+                    <field name="type"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_transfer_forms" model="ir.ui.view">
+            <field name="name">transfer.details.form</field>
+            <field name="model">transfer.details</field>
+            <field name="arch" type="xml">
+                <form string="Transfer">
+                    <header>
+                        <button name="object_submit" type="object" string="Submit" class="oe_highlight"/>
+                        <button name="object_submit1" type="object" string="Confirm" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" readonly="1"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="type" required="True"/>
+                        </group>
+                        <!--                            <group attrs="{'invisible': [('type','!=', 'internal')]}">-->
+                        <!--                                <field name="transfer_ids" nolabel="1" widget="one2many_list"  >-->
+                        <!--                                    <tree editable="bottom">-->
+                        <!--                                        <field name="employee_id"/>-->
+                        <!--                                        <field name="current_location"/>-->
+                        <!--                                        <field name="to_location"/>-->
+                        <!--                                    </tree>-->
+                        <!--                                </field>-->
+                        <!--                            </group>-->
+
+                        <group>
+                            <field name="transfer_ids" nolabel="1" widget="one2many_list">
+                                <tree editable="bottom">
+                                    <field name="employee_id"/>
+                                    <field name="current_job"
+                                           attrs="{'column_invisible': [('parent.type','=', 'onsite')]}"/>
+                                    <field name="current_position"
+                                           attrs="{'column_invisible': [('parent.type','=', 'onsite')]}"/>
+                                    <field name="to_job" attrs="{'column_invisible': [('parent.type','=', 'onsite')]}"/>
+                                    <field name="to_position"
+                                           attrs="{'column_invisible': [('parent.type','=', 'onsite')]}"/>
+                                    <field name="current_location"
+                                           attrs="{'column_invisible': [('parent.type','=', 'internal')]}"/>
+                                    <field name="to_location"
+                                           attrs="{'column_invisible': [('parent.type','=', 'internal')]}"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- <record id="view_recruitment_tree1" model="ir.ui.view">-->
+        <!--            <field name="name">transfer.employee.tree</field>-->
+        <!--            <field name="model">transfer.employee</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!-- attrs="{'invisible': [('type','not in',['internal'])]}"-->
+        <!--            </field>-->
+        <!-- </record>-->
+
+        <record id="action_transfer_form" model="ir.actions.act_window">
+            <field name="name">Transfer Form</field>
+            <field name="res_model">transfer.details</field>
+            <field name="view_mode">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <menuitem
+                id="transfer_details_menu"
+                name="Inter Transfer"
+                parent="hr.menu_hr_employee_payroll"
+                action="action_transfer_form"
+                groups="base.group_user"
+                sequence="3"/>
+
+
+    </data>
+</odoo>
